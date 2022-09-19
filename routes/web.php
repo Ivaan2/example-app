@@ -14,7 +14,7 @@ use App\Http\Controllers\EmpleadoController;
 |
 */
 
-/*Route::get('/', function () {
+Route::get('/', function () {
     return view('welcome');
 });
 
@@ -23,6 +23,3 @@ Route::get('/empleados/', function () {
 });
 
 Route::get('/empleados/create/', [EmpleadoController::class, 'create']);
-*/
-
-Route::resource('empleados',EmpleadoController::class);
