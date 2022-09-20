@@ -21,7 +21,7 @@ Mostrar lista de empleados
             <td>{{ $empleado->Correo }}</td>
             <td>Editar | 
 
-            <a href="{{ url('/empleado/.'$empleado->id.'/edit') }}">
+            <a href="{{ url('/empleado/'. $empleado->id. '/edit') }}">
                 Editar
             </a>
                 
