@@ -18,5 +18,5 @@ Formulario de creacion de Empleado
     <input type="file" name="Foto" id="Foto">
     <br>
 
-    <input type="submit" name="Enviar">
-</form> 
+    <button type="submit" name="Enviar">Enviar</button>
+</form>  
