@@ -13,5 +13,8 @@ use App\Http\Controllers\EmpleadoController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function() {
+    return view('welcome');
+});
 
-Route::get('/empleados/create/', [EmpleadoController::class, 'create']);
+Route::resource('empleado', EmpleadoController::class);
