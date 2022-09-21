@@ -40,6 +40,30 @@ class EmpleadoController extends Controller
         //
         $datosEmpleado = request()->except('Enviar', '_token');
 
+        $aCampos = [
+            'Nombre'=>'required|string|max:100',
+            'Apellidos'=>'required|string|max:150',
+            'Correo'=>'required|email'
+        ];
+        $aMensajes = [
+            'required'=>'Atributo :attribute es requerido'
+        ];
+
+        if($request->hasFile('Foto')){
+            $aCampos=[
+                'Nombre'=>'required|string|max:100',
+                'Apellidos'=>'required|string|max:150',
+                'Correo'=>'required|email',
+                'Foto'=>'required|max:10000|mimes:jpeg,jpg,png,fif,gif'];
+
+            $aMensajes=[
+                'required'=>'Atributo :attribute es requerido',
+                'Foto.required'=>'La foto es requerida'
+            ];   
+        }
+
+        $this->validate($request, $aCampos, $aMensajes);
+
         if($request->hasFile('Foto'))
         {
             $datosEmpleado['Foto']=$request->file('Foto')->store('uploads','public');
@@ -98,7 +122,8 @@ class EmpleadoController extends Controller
 
         $empleado = Empleado::findOrFail($id);
 
-        return view('empleado.edit', compact('empleado'));
+        //return view('empleado.edit', compact('empleado'));
+        return redirect('empleado')->with('mensaje', 'Empleado modificado con éxito');
     }
 
     /**

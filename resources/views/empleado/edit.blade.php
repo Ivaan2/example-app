@@ -1,4 +1,7 @@
-Formulario de edición de Empleado
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
 
 <form action="{{ url('/empleado/'.$empleado->id) }}" method="POST" enctype="multipart/form-data">
 @csrf
@@ -6,3 +9,5 @@ Formulario de edición de Empleado
 @include('empleado.form')
 
 </form>
+</div>
+@endsection

@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmpleadoController;
+use App\Http\Controllers\HomeController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +16,12 @@ use App\Http\Controllers\EmpleadoController;
 |
 */
 Route::get('/', function() {
-    return view('welcome');
+    return view('auth.login');
 });
 
-Route::resource('empleado', EmpleadoController::class);
+Route::resource('empleado', EmpleadoController::class)->middleware('auth');
+Auth::routes(['register'=>false, 'reset'=>false]);
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/home', [EmpleadoController::class, 'index'])->name('home');
+});
